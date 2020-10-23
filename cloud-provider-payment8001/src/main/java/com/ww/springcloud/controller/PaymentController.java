@@ -12,6 +12,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author linweiwei
@@ -80,6 +81,21 @@ public class PaymentController {
             //CLOUD-PAYMENT-SERVICE(ID名称)	192.168.137.1（主机地址）	8001	http://192.168.137.1:8001
         }
         return this.discoveryClient;
+    }
+
+
+    /**
+     * Feign模拟超时
+     * @return
+     */
+    @GetMapping("/feign/timeout")
+    public String paymentFeignTimeOut() {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort;
     }
 
 }

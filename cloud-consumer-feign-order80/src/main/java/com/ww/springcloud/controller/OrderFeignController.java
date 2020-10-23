@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author linweiwei
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @describe:
  */
 
-@Controller
+@RestController
 @Slf4j
 public class OrderFeignController {
 
@@ -26,6 +27,12 @@ public class OrderFeignController {
     @GetMapping("/consumer/payment/git/{id}")
     public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id) {
         return paymentFeignService.getPaymentById(id);
+    }
+
+    //用了集群服务器8002没写，所以一个次可以一次不可以
+    @GetMapping("consumer/payment/feign/timeout")
+    public String feignTimeout() {
+        return paymentFeignService.paymentFeignTimeOut();
     }
 
 }
