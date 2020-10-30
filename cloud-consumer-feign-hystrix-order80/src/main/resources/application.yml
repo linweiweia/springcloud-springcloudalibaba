@@ -8,3 +8,12 @@ eureka:
     register-with-eureka: false
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+
+# Feign中使用hystrix，可以使降级方法和业务逻辑分开
+feign:
+  hystrix:
+    enabled: true
+
+ribbon:
+  ReadTimeout: 10000   #可以接受的连接时间 默认是1s  用来测试超时服务降级
+  ConnetTimeout: 10000 #可以接受的连接时间

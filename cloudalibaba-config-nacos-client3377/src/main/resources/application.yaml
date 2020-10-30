@@ -1,0 +1,4 @@
+spring:
+  profiles:
+    active: dev  #选择nacos上的dev配置文件
+    #active: test  #选择nacos上的dev配置文件

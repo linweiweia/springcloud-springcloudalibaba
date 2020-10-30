@@ -1,0 +1,21 @@
+server:
+  port: 3377
+
+spring:
+  application:
+    name: nacos-config-client
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #nacos的服务地址
+      config:
+        server-addr: localhost:8848 #nacos的服务地址
+        file-extension: yaml        #nacos上配置文件的后缀名
+        group: Group_A              #分组
+        #group: Group_B             #分组
+        #namespace: 5b3e39b5-83ff-4977-ab8b-dd3e21e6f784 #命名空间
+
+#nacos官方配置文件的DataID名格式  ${prefix}-${spring.profiles.active}.${file-extension}
+                                #服务名-文件名.后缀名       其中文件名在application中配置
+#所以去nacos拿去的配置文件名就是：nacos-config-client-dev.yaml

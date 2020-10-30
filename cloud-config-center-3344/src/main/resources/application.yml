@@ -1,0 +1,37 @@
+server:
+  port: 3344
+
+spring:
+  application:
+    name: config-server #注册进Eureka服务器的微服务名
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/linweiweia/springcloud-config.git #仓库的URI 这里写https没有像视屏写ssl
+          search-paths:
+            - springcloud-config #搜索的目录
+      label: main #读取的分支
+      #访问即可访问到 http://localhost:3344/main/config-dev.yml
+
+#服务注册到eureka地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+
+#rabbitmq相关配置 15672是Web管理界面的端口；5672是MQ访问的端口
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+
+
+# actuator监控默认只有端点/health和/info端点是暴露的，可以通过include和exclude进行包括和排除
+# 后面访问直接curl -X POST "http://localhost:3344/actuator/bus-refresh" 3344就会发布，3355，3355就会刷新配置
+management:
+  endpoints: #暴露bus刷新配置的端点
+    web:
+      exposure:
+        include: 'bus-refresh'
