@@ -11,7 +11,8 @@ spring:
     sentinel:
       transport:
         dashboard: localhost:8080   #配置sentinel dashboard地址（8080会监控本微服务8401）
-        port: 8719  #???
+        port: 8719  #这个是和8080做交互的，就是我们在8080界面做配置，8080会把配置的东西发送给8719就是本springboot应用，然后sentinel才会生效
+        #dashboard: 118.178.59.191:8080 测试不可以应该是springboot的jar包和sentinel8080jar包要在同一机子上
 
 management:
   endpoints:

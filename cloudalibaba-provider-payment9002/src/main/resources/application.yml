@@ -7,7 +7,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 118.178.59.191   #nacos的服务地址
+        server-addr: 118.178.59.191   #nacos的服务地址 阿里云上面nginx做了负载均衡搭集群
 
 management:
   endpoints:

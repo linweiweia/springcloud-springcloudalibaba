@@ -10,7 +10,7 @@ spring:
       discovery:
         server-addr: localhost:8848 #nacos的服务地址
       config:
-        server-addr: localhost:8848 #nacos的服务地址
+        server-addr: localhost:8848 #config的nacos的服务地址
         file-extension: yaml        #nacos上配置文件的后缀名
         group: Group_A              #分组
         #group: Group_B             #分组
