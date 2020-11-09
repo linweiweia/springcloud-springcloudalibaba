@@ -12,7 +12,18 @@ spring:
       transport:
         dashboard: localhost:8080   #配置sentinel dashboard地址（8080会监控本微服务8401）
         port: 8719  #这个是和8080做交互的，就是我们在8080界面做配置，8080会把配置的东西发送给8719就是本springboot应用，然后sentinel才会生效
-        #dashboard: 118.178.59.191:8080 测试不可以应该是springboot的jar包和sentinel8080jar包要在同一机子上
+        #dashboard: 118.178.59.191:8080 测试应该不可以是springboot的jar包和sentinel8080jar包要在同一机子上
+
+      #sentinel去nacos找持久化的配置文件，具体的规则写在配置文件里面
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 118.178.59.191 #nacos服务地址
+            dataId: cloudalibaba-sentinel-service #nacos配置文件的dataId（要与nacos上建立的文件ID一样）
+            groupId: DEFAULT_GROUP  #nacos配置文件的分组
+            data-type: json         #nacos配置文件的格式
+            rule-type: flow         #数据源的类型
+
 
 management:
   endpoints:
